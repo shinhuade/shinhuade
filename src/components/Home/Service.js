@@ -16,7 +16,13 @@ function Service() {
             <Col xs={12} sm={6} key={idx}>
               <ServiceCard
                 hoverable
-                cover={<img draggable={false} alt={it} src={`https://picsum.photos/500/500/?random=${idx}`} />}
+                cover={
+                  <img
+                    draggable={false}
+                    alt={it}
+                    src={new URL('../../assets/service-0' + `${idx + 1}` + '.jpg', import.meta.url).href}
+                  />
+                }
               >
                 <Card.Meta title={it} />
               </ServiceCard>
@@ -63,6 +69,9 @@ const ServiceCard = styled(Card)`
 
     & img {
       border-radius: 0;
+      width: 100%;
+      aspect-ratio: 1/1;
+      object-fit: cover;
     }
 
     & .ant-card-meta-title {
