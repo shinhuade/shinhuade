@@ -13,7 +13,14 @@ function Hero() {
         <img src={new URL('@/assets/paint-color.png', import.meta.url).href} className="bg-paint" />
       </div>
       <VideoWrapper>
-        <video src={new URL('@/assets/hero.mp4', import.meta.url).href} autoPlay muted playsInline loop />
+        <video
+          src={new URL('@/assets/hero.mp4', import.meta.url).href}
+          autoPlay
+          muted
+          playsinline
+          webkit-playsinline
+          loop
+        />
       </VideoWrapper>
     </Wrapper>
   );
