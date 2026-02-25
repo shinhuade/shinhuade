@@ -85,7 +85,7 @@ export default function About() {
   const screens = useBreakpoint();
   const sectionRefs = useRef([]);
   const [activeHash, setActiveHash] = useState(0);
-  const navItems = ['創辦人的話', '歷史背景', '公司優勢', '公司簡介'];
+  const navItems = ['創辦人的話', '歷史沿革', '公司優勢', '公司簡介'];
 
   useEffect(() => {
     const timer = setTimeout(() => {
