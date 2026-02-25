@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import emailjs from '@emailjs/browser';
 import company from '../config/company';
 import theme from '../config/theme';
 import { Row, Col, Form, Input, message } from 'antd';
@@ -14,13 +15,23 @@ function Contact() {
 
   const onFinish = async (values) => {
     setLoading(true);
-    // 模擬 API 請求
-    setTimeout(() => {
-      console.log('Form Values:', values);
+
+    // 請填入您的 EmailJS Service ID, Template ID, Public Key，已移除至 .env 檔案
+    // 修改 .env 檔案中對應的值
+    const SERVICE_ID = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+    const TEMPLATE_ID = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+    const PUBLIC_KEY = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+
+    try {
+      await emailjs.send(SERVICE_ID, TEMPLATE_ID, values, PUBLIC_KEY);
       message.success('我們已收到您的訊息，將盡快與您聯繫！');
       form.resetFields();
+    } catch (error) {
+      console.error('EmailJS Error:', error);
+      message.error('發送失敗，請稍後再試，或直接聯繫我們。');
+    } finally {
       setLoading(false);
-    }, 1000);
+    }
   };
 
   return (
