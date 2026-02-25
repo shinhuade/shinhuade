@@ -8,4 +8,5 @@ export default {
   uni_no: '27797775',
   line: 'https://lin.ee/8HxkoGPw',
   facebook: 'https://www.facebook.com/share/1EbrbTH7GW/?mibextid=wwXIfr',
+  instagram: 'https://www.instagram.com/shin_hua_de',
 };

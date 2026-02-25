@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import company from '../config/company';
 import { Row, Col, Divider, Grid } from 'antd';
-import { Facebook, Line } from 'styled-icons/fa-brands';
+import { Facebook, Line, Instagram } from 'styled-icons/fa-brands';
 import { LocationDot as LocationIcon, Phone as PhoneIcon, Envelope as MailIcon } from 'styled-icons/fa-solid';
 import { Link } from 'react-router-dom';
 
@@ -35,6 +35,9 @@ function Footer() {
                 </a>
                 <a href={company.line} target="_blank" rel="noopener noreferrer">
                   <Line size={24} />
+                </a>
+                <a href={company.instagram} target="_blank" rel="noopener noreferrer">
+                  <Instagram size={24} />
                 </a>
               </div>
             </BrandSection>
