@@ -91,11 +91,12 @@ const Wrapper = styled.section`
 
     img {
       width: calc(50% - var(--gap) / 2);
-      aspect-ratio: 1/2;
+      aspect-ratio: 2/3;
       object-fit: cover;
-      display: block
+      display: block;
       text-align: center;
       border-radius: 10rem;
+      object-position: 32%;
 
       &:first-child {
         margin-bottom: 30%;
@@ -147,6 +148,11 @@ const Wrapper = styled.section`
   }
 
   @media (min-width: 576px) {
+    & .image-area {
+      img {
+        aspect-ratio: 1/2;
+      }
+    }
     & .content {
       & > h2 {
         font-size: 2rem;
@@ -156,7 +162,7 @@ const Wrapper = styled.section`
 
         & > font {
           display: inline !important;
-          
+
           &.paint {
             border-bottom: none;
           }
