@@ -14,7 +14,7 @@ function Hero() {
       </div>
       <VideoWrapper>
         <video
-          src={new URL('@/assets/hero.mp4', import.meta.url).href}
+          src={new URL('@/assets/hero-v2.mp4', import.meta.url).href}
           autoPlay
           muted
           playsInline
