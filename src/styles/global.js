@@ -39,8 +39,6 @@ const style = css`
 `;
 
 const GlobalStyle = createGlobalStyle`
-  @import url('https://fonts.googleapis.com/css2?family=Alfa+Slab+One&display=swap');
-
   @font-face {
     font-family: 'hand-drawn';
     src: url(${ChenYuluoyan}) format('truetype');

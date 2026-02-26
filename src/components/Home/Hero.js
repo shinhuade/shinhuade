@@ -17,8 +17,8 @@ function Hero() {
           src={new URL('@/assets/hero.mp4', import.meta.url).href}
           autoPlay
           muted
-          playsinline
-          webkit-playsinline
+          playsInline
+          webkit-playsinline="true"
           loop
         />
       </VideoWrapper>
