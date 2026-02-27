@@ -39,12 +39,8 @@ const infos = [
 
 const history = [
   {
-    year: '1984',
-    content: '成立信豪企業社',
-  },
-  {
     year: '1994',
-    content: '搬遷於泰山，更名為恆德興業有限公司',
+    content: '成立恆德興業有限公司',
   },
   {
     year: '2004',
@@ -141,10 +137,11 @@ export default function About() {
                     確保客戶在每一個環節都能獲得成功與滿意。
                   </p>
                   <div>
-                    <img src={new URL('@/assets/founder.png', import.meta.url).href} style={{ width: 200 }} />
+                    <img src={new URL('@/assets/founder-v2.jpg', import.meta.url).href} style={{ width: 300 }} />
                     <p className="founder">
                       <font>創辦人</font>
-                      <font>蕭見忠</font>
+                      {/* <font>蕭見忠</font> */}
+                      <img src={new URL('@/assets/signature.png', import.meta.url).href} style={{ width: 150 }} />
                     </p>
                   </div>
                 </div>
@@ -255,6 +252,7 @@ const Wrapper = styled.div`
 
     & .founder {
       display: flex;
+      justify-content: center;
       align-items: center;
 
       & font:last-child {
