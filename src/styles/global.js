@@ -28,7 +28,12 @@ const style = css`
     max-width: 1380px;
     margin: 0 auto;
     padding: 0 var(--base-padding);
-    overflow-x: clip;
+  }
+
+  /* 修正 Ant Design Row 的負邊距導致的溢出問題，並使其置中 */
+  .ant-row {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
   }
 
   @media (min-width: 576px) {

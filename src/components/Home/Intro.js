@@ -6,6 +6,37 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
+const colors = [
+  '#ff4d4d', // Red
+  '#ff9f43', // Orange
+  '#f9ca24', // Yellow
+  '#badc58', // Light Green
+  '#6ab04c', // Green
+  '#30e3ca', // Aqua
+  '#1199ff', // Blue
+  '#5352ed', // Indigo
+  '#6c5ce7', // Deep Purple
+  '#e84393', // Rose
+  '#30336b', // Dark Blue
+];
+
+const generateConicGradient = (colors, gap = 6) => {
+  const total = colors.length;
+  const sectionAngle = 360 / total; // e.g., 360 / 5 = 72
+  const colorAngle = sectionAngle - gap; // e.g., 72 - 12 = 60
+
+  return `conic-gradient(
+    ${colors
+      .map((color, index) => {
+        const start = index * sectionAngle;
+        const end = start + colorAngle;
+        const nextStart = (index + 1) * sectionAngle;
+        return `${color} ${start}deg ${end}deg, transparent ${end}deg ${nextStart}deg`;
+      })
+      .join(', ')}
+  )`;
+};
+
 function AnimatedNumber({ end, duration = 2 }) {
   const ref = React.useRef(null);
 
@@ -42,13 +73,14 @@ function Intro() {
     <Wrapper className="wrapper">
       <div className="container">
         <Row gutter={[48, 48]} wrap align="middle" justify="space-between">
-          <Col xs={{ span: 24, order: 2 }} md={{ span: 10, order: 0 }} lg={10}>
-            <div className="image-area">
-              <img src={new URL('@/assets/intro-01.jpg', import.meta.url).href} />
-              <img src={new URL('@/assets/intro-02.jpg', import.meta.url).href} />
+          <Col xs={{ span: 24, order: 2 }} md={{ span: 10, order: 0 }} lg={10} style={{ zIndex: 1 }}>
+            <div class="color-wheel"></div>
+            <div className="image-area" style={{ aspectRatio: '1/1', width: '100%' }}>
+              {/* <img src={new URL('@/assets/intro-01.jpg', import.meta.url).href} />
+              <img src={new URL('@/assets/intro-02.jpg', import.meta.url).href} /> */}
             </div>
           </Col>
-          <Col xs={24} md={14} lg={12}>
+          <Col xs={24} md={14} lg={12} style={{ zIndex: 2 }}>
             <div className="content">
               <h2>
                 <font className="paint">新北專業烤漆廠</font>
@@ -81,6 +113,7 @@ function Intro() {
 
 const Wrapper = styled.section`
   background: #fff;
+  z-index: 0;
 
   & .image-area {
     --gap: 30px;
@@ -97,6 +130,7 @@ const Wrapper = styled.section`
       text-align: center;
       border-radius: 10rem;
       object-position: 32%;
+      opacity: 0;
 
       &:first-child {
         margin-bottom: 30%;
@@ -172,6 +206,36 @@ const Wrapper = styled.section`
       & > p {
         line-height: 2;
       }
+    }
+  }
+
+  .color-wheel {
+    width: 150%;
+    height: auto;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: -1;
+
+    /* 使用 conic-gradient 製作有間隙的分段 */
+    background: ${generateConicGradient(colors)};
+
+    /* 圓環遮罩 */
+    -webkit-mask: radial-gradient(transparent 35%, black 35%);
+    mask: radial-gradient(transparent 35%, black 35%);
+
+    /* 旋轉動畫 */
+    animation: rotateWheel 30s linear infinite;
+  }
+
+  @keyframes rotateWheel {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
     }
   }
 `;

@@ -44,8 +44,11 @@ function Advantage() {
 }
 
 const Wrapper = styled.section`
+  z-index: 1;
+
   & > .container {
     & > .ant-row {
+      background: #fff;
       width: 100%;
       box-shadow: 0 0 5px rgb(from var(--primary-color) r g b / 0.2);
       border-radius: 2rem;
