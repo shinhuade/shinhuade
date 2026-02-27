@@ -32,8 +32,7 @@ const style = css`
 
   /* 修正 Ant Design Row 的負邊距導致的溢出問題，並使其置中 */
   .ant-row {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
+    margin-inline: 0 !important;
   }
 
   @media (min-width: 576px) {
