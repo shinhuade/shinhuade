@@ -104,6 +104,12 @@ function Footer() {
             <Link to="/privacy">隱私權政策</Link>
             <Link to="/terms">服務條款</Link>
           </div> */}
+          <div className="credit">
+            <span>Web Design by</span>
+            <a href="https://xuanlin129.github.io" target="_blank" rel="noopener noreferrer">
+              Xuan
+            </a>
+          </div>
         </BottomBar>
       </div>
     </Wrapper>
@@ -299,6 +305,26 @@ const BottomBar = styled.div`
 
       &:hover {
         color: #fff;
+      }
+    }
+  }
+
+  .credit {
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.4);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    a {
+      color: rgba(255, 255, 255, 0.6);
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-weight: 500;
+
+      &:hover {
+        color: #fff;
+        text-decoration: underline;
       }
     }
   }
