@@ -5,6 +5,7 @@ import { Row, Col, Divider, Grid } from 'antd';
 import { Facebook, Line, Instagram } from 'styled-icons/fa-brands';
 import { LocationDot as LocationIcon, Phone as PhoneIcon, Envelope as MailIcon } from 'styled-icons/fa-solid';
 import { Link } from 'react-router-dom';
+import * as AppActions from '../utils';
 
 const navItems = [
   { path: '/service', label: '服務項目' },
@@ -50,7 +51,13 @@ function Footer() {
                 <ul>
                   {navItems.map((item) => (
                     <li key={item.path}>
-                      <Link to={item.path}>{item.label}</Link>
+                      <span
+                        onClick={() => {
+                          AppActions.navigate(item.path);
+                        }}
+                      >
+                        {item.label}
+                      </span>
                     </li>
                   ))}
                 </ul>
@@ -192,12 +199,13 @@ const LinkSection = styled.div`
     li {
       margin-bottom: 16px;
 
-      a {
+      span {
         color: rgba(255, 255, 255, 0.7);
         text-decoration: none;
         transition: all 0.3s ease;
         display: inline-block;
         font-size: 15px;
+        cursor: pointer;
 
         &::before {
           content: '›';
