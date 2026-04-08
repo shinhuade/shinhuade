@@ -43,7 +43,7 @@ function Contact() {
       />
       <Wrapper className="wrapper">
         <div className="container">
-          <Row gutter={[{ xs: 24, md: 36, lg: 48 }, 48]} justify="center">
+          <Row gutter={[{ xs: 0, md: 36, lg: 48 }, 48]} justify="center">
             {/* 左側：聯絡資訊 */}
             <Col xs={24} lg={10}>
               <InfoCard>
@@ -121,7 +121,7 @@ function Contact() {
               <FormCard>
                 <h3>線上諮詢</h3>
                 <Form form={form} layout="vertical" onFinish={onFinish} size="large" requiredMark={false}>
-                  <Row gutter={16}>
+                  <Row gutter={[16, 16]}>
                     <Col xs={24} sm={12}>
                       <Form.Item name="name" label="您的稱呼" rules={[{ required: true, message: '請輸入您的稱呼' }]}>
                         <Input placeholder="王先生 / 陳小姐" prefix={<User size={16} color="#ccc" />} />
@@ -132,27 +132,34 @@ function Contact() {
                         <Input placeholder="0912-345-678" prefix={<Phone size={16} color="#ccc" />} />
                       </Form.Item>
                     </Col>
+                    <Col span={24}>
+                      <Form.Item
+                        name="email"
+                        label="電子信箱"
+                        rules={[
+                          { type: 'email', message: '請輸入有效的 Email 格式' },
+                          { required: true, message: '請輸入電子信箱' },
+                        ]}
+                      >
+                        <Input placeholder="example@email.com" prefix={<Envelope size={16} color="#ccc" />} />
+                      </Form.Item>
+                    </Col>
+
+                    <Col span={24}>
+                      <Form.Item
+                        name="message"
+                        label="諮詢內容"
+                        rules={[{ required: true, message: '請輸入諮詢內容' }]}
+                      >
+                        <Input.TextArea
+                          placeholder="請簡述您的需求，例如：產品材質、預計數量、特殊加工需求..."
+                          rows={5}
+                          showCount
+                          maxLength={500}
+                        />
+                      </Form.Item>
+                    </Col>
                   </Row>
-
-                  <Form.Item
-                    name="email"
-                    label="電子信箱"
-                    rules={[
-                      { type: 'email', message: '請輸入有效的 Email 格式' },
-                      { required: true, message: '請輸入電子信箱' },
-                    ]}
-                  >
-                    <Input placeholder="example@email.com" prefix={<Envelope size={16} color="#ccc" />} />
-                  </Form.Item>
-
-                  <Form.Item name="message" label="諮詢內容" rules={[{ required: true, message: '請輸入諮詢內容' }]}>
-                    <Input.TextArea
-                      placeholder="請簡述您的需求，例如：產品材質、預計數量、特殊加工需求..."
-                      rows={5}
-                      showCount
-                      maxLength={500}
-                    />
-                  </Form.Item>
 
                   <div className="submit-area">
                     <RipperButton onClick={() => form.submit()} disabled={loading} type="button">
@@ -181,7 +188,7 @@ const Wrapper = styled.section`
 
 const InfoCard = styled.div`
   background: #fff;
-  padding: 40px;
+  padding: 32px 16px;
   border-radius: 16px;
   height: 100%;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
@@ -290,11 +297,15 @@ const InfoCard = styled.div`
       }
     }
   }
+
+  @media (min-width: 576px) {
+    padding: 40px;
+  }
 `;
 
 const FormCard = styled.div`
   background: #fff;
-  padding: 40px;
+  padding: 32px 16px;
   border-radius: 16px;
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 
@@ -335,6 +346,10 @@ const FormCard = styled.div`
     margin-top: 32px;
     display: flex;
     justify-content: center;
+  }
+
+  @media (min-width: 576px) {
+    padding: 40px;
   }
 `;
 
