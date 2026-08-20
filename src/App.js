@@ -13,6 +13,11 @@ function App() {
       theme={{
         token: {
           colorPrimary: theme.primary,
+          colorText: theme.text,
+          colorTextSecondary: theme.muted,
+          colorBorder: theme.border,
+          borderRadius: 8,
+          fontFamily: "'Noto Sans TC', sans-serif",
         },
         components: {},
       }}

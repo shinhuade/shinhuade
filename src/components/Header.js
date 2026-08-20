@@ -1,11 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Button, Dropdown, Grid, Select, Space } from 'antd';
+import { Button, Grid, Space } from 'antd';
 import * as AppActions from '../utils';
-import { useLocation } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { Menu as MenuIcon } from '@styled-icons/material';
-import { EarthAmericas, Xmark } from '@styled-icons/fa-solid';
+import { Xmark } from '@styled-icons/fa-solid';
 
 const { useBreakpoint } = Grid;
 
@@ -18,25 +16,12 @@ const navItems = [
 ];
 
 function Header() {
-  const location = useLocation();
-  const { i18n } = useTranslation();
   const screens = useBreakpoint();
   const [drawer, setDrawer] = React.useState(false);
 
-  const changeLanguage = React.useCallback(
-    async (lang) => {
-      if (lang === i18n.language) return;
-      AppActions.setLoading(true);
-      await AppActions.delay(500);
-      i18n.changeLanguage(lang);
-      AppActions.setLoading(false);
-    },
-    [i18n],
-  );
-
   return (
     <Wrapper>
-      <div className="">
+      <div className="container nav-inner">
         <Logo
           src={new URL('@/assets/logo.png', import.meta.url).href}
           alt="Logo"
@@ -93,7 +78,11 @@ function Header() {
             </Space>
           )}
 
-          {screens.xs && <MenuIcon size={35} color="#fff" onClick={() => setDrawer(true)} />}
+          {screens.xs && (
+            <MenuButton type="button" aria-label="開啟選單" onClick={() => setDrawer(true)}>
+              <MenuIcon size={28} />
+            </MenuButton>
+          )}
         </nav>
       </div>
 
@@ -151,7 +140,6 @@ function Header() {
 const Wrapper = styled.header`
   width: 100%;
   height: var(--navbar-height);
-  // box-shadow: 0 1px 8px #ccc;
   position: fixed;
   top: 0;
   left: 0;
@@ -159,9 +147,8 @@ const Wrapper = styled.header`
   color: #fff;
   z-index: 999;
 
-  & > div {
+  & > .nav-inner {
     height: 100%;
-    padding: 0 var(--base-padding);
     display: flex;
     align-items: center;
 
@@ -201,11 +188,26 @@ const ActionButton = styled(Button)`
   }
 `;
 
+const MenuButton = styled.button`
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.1);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+`;
+
 const Drawer = styled.section`
   width: 100vw;
   height: 100vh;
-  background: var(--primary-color);
-  padding: var(--navbar-height) calc(var(--base-padding) * 3);
+  background:
+    linear-gradient(145deg, rgba(0, 54, 91, 0.98), rgba(0, 74, 120, 0.98)),
+    var(--primary-color);
+  padding: var(--navbar-height) var(--base-padding);
   opacity: 0;
   display: flex;
   flex-direction: column;
@@ -226,9 +228,11 @@ const Drawer = styled.section`
 
   & > .close-btn {
     position: absolute;
-    top: 0;
-    right: 0;
-    transform: translate(-100%, 100%);
+    top: 24px;
+    right: 24px;
+    padding: 6px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
   }
 
   & > .bg-cover {
@@ -246,11 +250,20 @@ const Drawer = styled.section`
     color: #fff;
     text-align: center;
     font-size: 2rem;
-    font-weight: 500;
+    font-weight: 700;
     padding: 30px 0;
     display: flex;
     flex-direction: column;
-    gap: 1.5rem;
+    gap: 0.75rem;
+    position: relative;
+    z-index: 1;
+
+    span {
+      display: block;
+      padding: 14px 0;
+      border-radius: var(--radius-md);
+      cursor: pointer;
+    }
   }
 `;
 export default Header;

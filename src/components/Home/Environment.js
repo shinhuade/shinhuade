@@ -1,79 +1,104 @@
 import React from 'react';
 import styled from 'styled-components';
-import gsap from 'gsap';
+import Marquee from 'react-fast-marquee';
 
 const environmentImages = Object.values(
-  import.meta.glob('@/assets/environment_*.{png,jpg,jpeg,PNG,JPG,JPEG}', { eager: true, as: 'url' }),
+  import.meta.glob('@/assets/environment_*.{png,jpg,jpeg,PNG,JPG,JPEG}', {
+    eager: true,
+    query: '?url',
+    import: 'default',
+  }),
 );
 
 function Environment() {
-  const marqueeRef = React.useRef(null);
-
-  React.useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      if (!marqueeRef.current) return;
-
-      gsap.to(marqueeRef.current, {
-        x: '-50%',
-        duration: 25,
-        ease: 'none',
-        repeat: -1,
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   return (
     <Wrapper className="wrapper">
-      <h2>廠房環境</h2>
+      <div className="section-heading">
+        <span>Environment</span>
+        <h2>廠房環境</h2>
+      </div>
       <div className="marquee-container">
-        <div ref={marqueeRef}>
+        <StyledMarquee speed={42} gradient={false}>
           {environmentImages.map((src, i) => (
-            <img key={i} src={src} alt="environment" />
+            <div className="marquee-item" key={i}>
+              <img src={src} alt="environment" />
+            </div>
           ))}
-          {environmentImages.map((src, i) => (
-            <img key={`dup-${i}`} src={src} alt="environment" />
-          ))}
-        </div>
+        </StyledMarquee>
       </div>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.section`
-  & > h2 {
-    font-size: 2rem;
-    font-weight: 500;
-    margin-bottom: 50px;
+  background: #fff;
+  overflow: hidden;
+
+  & > .section-heading {
     text-align: center;
+    margin-bottom: 50px;
+
+    & > span {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--accent-color);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+
+      &::before,
+      &::after {
+        content: '';
+        width: 32px;
+        height: 1px;
+        background: currentColor;
+        opacity: 0.5;
+      }
+    }
+
+    & > h2 {
+      color: var(--text-color);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+    }
   }
 
   & > .marquee-container {
     width: 100%;
     overflow: hidden;
+  }
+`;
 
-    & > div {
-      display: flex;
-      gap: 24px;
-      padding-right: 24px;
-      width: max-content;
+const StyledMarquee = styled(Marquee)`
+  .rfm-marquee,
+  .rfm-initial-child-container {
+    gap: 24px;
+    padding-right: 24px;
+    align-items: flex-start;
+  }
 
-      & img {
-        height: 300px;
-        width: auto;
-        max-width: initial;
-        object-fit: contain;
-        border-radius: 16px;
+  .marquee-item {
+    display: block;
+  }
 
-        &:nth-child(even) {
-          margin-top: 50px;
-        }
-        &:nth-child(odd) {
-          margin-bottom: 50px;
-        }
-      }
-    }
+  .rfm-child:nth-child(even) .marquee-item {
+    margin-top: 50px;
+  }
+
+  .rfm-child:nth-child(odd) .marquee-item {
+    margin-bottom: 50px;
+  }
+
+  img {
+    height: 300px;
+    width: auto;
+    max-width: initial;
+    object-fit: contain;
+    border-radius: 16px;
   }
 `;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import * as AppActions from '../utils';
 import { Row, Col } from 'antd';
-import { Cogs, ClipboardList, Clock, Handshake, Infinity } from 'styled-icons/fa-solid';
+import { Cogs, ClipboardList, Clock, Handshake, Infinity as InfinityIcon } from 'styled-icons/fa-solid';
 import PageHeader from '../components/PageHeader';
 import RipperButton from '../components/RipperButton';
 
@@ -49,7 +49,7 @@ const advantages = [
   { icon: <ClipboardList size={32} />, text: '標準化製程流程' },
   { icon: <Clock size={32} />, text: '交期控管能力' },
   { icon: <Handshake size={32} />, text: '長期配合彈性' },
-  { icon: <Infinity size={32} />, text: '適合持續性量產訂單' },
+  { icon: <InfinityIcon size={32} />, text: '適合持續性量產訂單' },
 ];
 
 export default function Service() {

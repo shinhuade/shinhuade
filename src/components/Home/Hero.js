@@ -5,10 +5,11 @@ function Hero() {
   return (
     <Wrapper>
       <div className="content">
+        <span className="eyebrow">Powder Coating Since 1984</span>
         <h1>興樺德興業有限公司</h1>
         <p>
-          <font>在耐用與環保之間，找到最好的平衡</font>
-          <font>專業粉體塗裝｜無溶劑製程｜穩定品質 | 值得信賴</font>
+          <span>在耐用與環保之間，找到最好的平衡</span>
+          <span>專業粉體塗裝｜無溶劑製程｜穩定品質｜值得信賴</span>
         </p>
         <img src={new URL('@/assets/paint-color.png', import.meta.url).href} className="bg-paint" />
       </div>
@@ -35,6 +36,7 @@ const Wrapper = styled.section`
   align-items: end;
   overflow: hidden;
   z-index: 1;
+  background: #fff;
 
   &::before {
     content: '';
@@ -50,38 +52,97 @@ const Wrapper = styled.section`
   }
 
   & > .content {
-    width: 100%;
-    max-width: 600px;
+    width: min(720px, calc(100% - var(--base-padding) * 2));
     color: #fff;
-    text-align: center;
     position: absolute;
-    bottom: 65%;
+    bottom: 58%;
     left: 50%;
     transform: translateX(-50%);
     z-index: 2;
 
+    & > .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      color: rgba(255, 255, 255, 0.78);
+      font-size: 0.82rem;
+      font-weight: 800;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+
+      &::before {
+        content: '';
+        width: 42px;
+        height: 2px;
+        background: var(--accent-color);
+      }
+    }
+
     & > h1 {
-      font-size: 2rem;
+      font-size: clamp(2.6rem, 7vw, 5.5rem);
       font-weight: 900;
-      letter-spacing: 0.25rem;
-      margin-bottom: 0.5rem;
+      letter-spacing: 0;
+      line-height: 1.08;
+      margin-bottom: 1.25rem;
+      text-wrap: balance;
     }
 
     & > p {
       display: flex;
       flex-direction: column;
+      gap: 0.55rem;
+      max-width: 620px;
+      color: rgba(255, 255, 255, 0.86);
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      line-height: 1.75;
     }
 
     & > .bg-paint {
-      width: 100%;
+      width: min(720px, 120vw);
       object-fit: contain;
-      filter: opacity(0.3);
+      filter: opacity(0.18) saturate(0.9);
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%, -45%) scaleX(1);
+      transform: translate(-48%, -45%) rotate(-4deg);
       pointer-events: none;
       z-index: -1;
+    }
+  }
+
+  @media (max-width: 575px) {
+    & > .content {
+      width: 100%;
+      max-width: 600px;
+      text-align: center;
+      bottom: 65%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      & > .eyebrow {
+        display: none;
+      }
+
+      & > h1 {
+        font-size: 2rem;
+        letter-spacing: 0.25rem;
+        line-height: 1.2;
+        margin-bottom: 0.5rem;
+      }
+
+      & > p {
+        gap: 0;
+        max-width: none;
+        font-size: 1rem;
+        line-height: 1.6;
+      }
+
+      & > .bg-paint {
+        width: 100%;
+        filter: opacity(0.3);
+        transform: translate(-50%, -45%) scaleX(1);
+      }
     }
   }
 
@@ -93,21 +154,11 @@ const Wrapper = styled.section`
     & > .content {
       top: initial;
       bottom: 20%;
-      left: 10%;
+      left: max(var(--base-padding), calc((100vw - 1380px) / 2 + var(--base-padding)));
       transform: translateX(0%);
 
-      & > h1 {
-        font-size: 3rem;
-        margin-bottom: 1.5rem;
-      }
-
-      & > p {
-        font-size: 1.25rem;
-        gap: 1rem;
-      }
-
       & > .bg-paint {
-        transform: translate(-50%, -50%) scaleX(1.5);
+        transform: translate(-48%, -45%) rotate(-4deg);
       }
     }
   }

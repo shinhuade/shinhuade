@@ -39,15 +39,21 @@ const StyledBtn = styled.button`
   width: ${(props) => props.$width};
   position: relative;
   padding: 12px 48px;
-  font-size: 1.1rem;
-  font-weight: 500;
+  min-height: 48px;
+  font-size: 1rem;
+  font-weight: 700;
   color: ${(props) => props.$primary};
   border: 1px solid ${(props) => props.$primary};
   background: transparent;
   cursor: pointer;
   overflow: hidden;
-  border-radius: 4px;
-  transition: color 0.4s ease;
+  border-radius: var(--radius-sm);
+  letter-spacing: 0;
+  transition:
+    color 0.4s ease,
+    border-color 0.4s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
   /* 修復手機版 border-radius 內的溢出裁切問題 */
   -webkit-mask-image: -webkit-radial-gradient(white, black);
 
@@ -77,11 +83,20 @@ const StyledBtn = styled.button`
 
   &:hover {
     color: ${(props) => props.$secondary};
+    transform: translateY(-2px);
+    box-shadow: 0 16px 30px rgba(0, 54, 91, 0.14);
   }
 
   &:hover::before {
     transform: translate(-50%, -50%) scale(1.1);
     transition: transform 0.6s ease-out;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.55;
+    transform: none;
+    box-shadow: none;
   }
 `;
 

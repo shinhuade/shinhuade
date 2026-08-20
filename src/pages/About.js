@@ -213,6 +213,7 @@ export default function About() {
 }
 
 const Wrapper = styled.div`
+  background: #fff;
   counter-reset: content-section;
 
   & .content-item {

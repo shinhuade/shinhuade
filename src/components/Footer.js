@@ -9,8 +9,8 @@ import * as AppActions from '../utils';
 
 const navItems = [
   { path: '/service', label: '服務項目' },
-  { path: '/about-us', label: '關於我們' },
-  { path: '/process', label: '服務流程' },
+  { path: '/about', label: '公司介紹' },
+  { path: '/process', label: '產品製程' },
   { path: '/faq', label: '常見問題' },
   { path: '/contact', label: '聯絡我們' },
 ];
@@ -125,15 +125,11 @@ function Footer() {
 
 const Wrapper = styled.footer`
   color: #fff;
-  background-color: var(--primary-color);
+  background:
+    linear-gradient(180deg, #00365b, #002942),
+    var(--primary-color);
   padding: 80px 0 30px;
   position: relative;
-
-  /* 背景紋理 (可選) */
-  // background-image:
-  //   linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-  //   linear-gradient(90deg, rgba(0, 0, 0, 0.05) 1px, transparent 1px);
-  // background-size: 30px 30px;
 
   .footer-divider {
     border-color: rgba(255, 255, 255, 0.15);
@@ -189,6 +185,16 @@ const LinkSection = styled.div`
     margin-bottom: 30px;
     color: #fff;
     letter-spacing: 1px;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--accent-color);
+      margin-top: 12px;
+    }
   }
 
   ul {
@@ -237,6 +243,16 @@ const ContactSection = styled.div`
     margin-bottom: 30px;
     color: #fff;
     letter-spacing: 1px;
+    position: relative;
+
+    &::after {
+      content: '';
+      display: block;
+      width: 32px;
+      height: 2px;
+      background: var(--accent-color);
+      margin-top: 12px;
+    }
   }
 
   ul {

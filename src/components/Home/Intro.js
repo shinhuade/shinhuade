@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { Row, Col } from 'antd';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import Advantage from './Advantage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -74,7 +75,7 @@ function Intro() {
       <div className="container">
         <Row gutter={[48, 48]} wrap align="middle" justify="space-between">
           <Col xs={{ span: 24, order: 2 }} md={{ span: 10, order: 0 }} lg={10} style={{ zIndex: 1 }}>
-            <div class="color-wheel"></div>
+            <div className="color-wheel"></div>
             <div className="image-area" style={{ aspectRatio: '1/1', width: '100%' }}>
               {/* <img src={new URL('@/assets/intro-01.jpg', import.meta.url).href} />
               <img src={new URL('@/assets/intro-02.jpg', import.meta.url).href} /> */}
@@ -83,9 +84,9 @@ function Intro() {
           <Col xs={24} md={14} lg={12} style={{ zIndex: 2 }}>
             <div className="content">
               <h2>
-                <font className="paint">新北專業烤漆廠</font>
-                <font className="divider"> – </font>
-                <font className="name">興樺德粉體塗裝</font>
+                <span className="paint">新北專業烤漆廠</span>
+                <span className="divider"> / </span>
+                <span className="name">興樺德粉體塗裝</span>
               </h2>
               <p>我們始終以創新與品質為核心，持續精進專業技術與製程管理，確保每一項服務都穩定可靠。</p>
               <p>
@@ -107,12 +108,15 @@ function Intro() {
           </Col>
         </Row>
       </div>
+      <Advantage />
     </Wrapper>
   );
 }
 
 const Wrapper = styled.section`
   background: #fff;
+  position: relative;
+  isolation: isolate;
   z-index: 0;
 
   & .image-area {
@@ -144,15 +148,18 @@ const Wrapper = styled.section`
 
   & .content {
     & > h2 {
-      font-size: 1.75rem;
-      font-weight: 500;
+      color: var(--text-color);
+      font-size: clamp(1.9rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.25;
       margin-bottom: 1.5rem;
       text-align: center;
 
-      & > font {
+      & > span {
         &.paint {
           display: inline-block;
-          border-bottom: 5px solid var(--primary-color);
+          color: var(--accent-color);
+          border-bottom: 4px solid rgba(185, 139, 66, 0.28);
           margin-bottom: 1rem;
         }
 
@@ -189,12 +196,10 @@ const Wrapper = styled.section`
     }
     & .content {
       & > h2 {
-        font-size: 2rem;
-        font-weight: 500;
         margin-bottom: 1.5rem;
         text-align: left;
 
-        & > font {
+        & > span {
           display: inline !important;
 
           &.paint {

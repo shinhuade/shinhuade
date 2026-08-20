@@ -71,7 +71,7 @@ function Faq() {
 
 const Wrapper = styled.section`
   padding: 80px 0;
-  background-color: #f8f9fa;
+  background-color: #f7fafb;
 
   .container {
     max-width: 800px;
@@ -87,16 +87,16 @@ const StyledCollapse = styled(Collapse)`
 
     .ant-collapse-item {
       background: #fff;
-      border-radius: 8px !important;
+      border-radius: var(--radius-md) !important;
       margin-bottom: 16px;
-      border: 1px solid #e1e4e8;
+      border: 1px solid var(--border-color);
       overflow: hidden;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.02);
+      box-shadow: var(--shadow-soft);
       transition: all 0.3s ease;
 
       &:hover {
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-        border-color: var(--primary-color);
+        box-shadow: var(--shadow-hover);
+        border-color: rgba(0, 54, 91, 0.28);
       }
     }
 
@@ -129,7 +129,7 @@ const StyledCollapse = styled(Collapse)`
       padding: 20px 24px !important;
       font-size: 18px;
       font-weight: 600;
-      color: #333;
+      color: var(--text-color);
       display: flex;
       align-items: center;
       transition: all 0.3s;
@@ -151,7 +151,7 @@ const StyledCollapse = styled(Collapse)`
           height: 36px;
           background: var(--primary-color);
           color: #fff;
-          border-radius: 50%;
+          border-radius: var(--radius-sm);
           font-family: 'Montserrat', sans-serif;
           font-weight: 700;
           font-size: 16px;
@@ -174,7 +174,7 @@ const StyledCollapse = styled(Collapse)`
         gap: 16px;
         font-size: 16px;
         line-height: 2;
-        color: #555;
+        color: var(--muted-color);
 
         .prefix-a {
           display: inline-flex;
@@ -182,15 +182,30 @@ const StyledCollapse = styled(Collapse)`
           justify-content: center;
           width: 36px;
           height: 36px;
-          background: #f0f2f5;
-          color: #666;
-          border-radius: 4px;
+          background: var(--bg-light-color);
+          color: var(--primary-color);
+          border-radius: var(--radius-sm);
           font-family: 'Montserrat', sans-serif;
           font-weight: 700;
           font-size: 16px;
           flex-shrink: 0;
           margin-top: -2px;
         }
+      }
+    }
+
+    @media (max-width: 576px) {
+      .ant-collapse-header {
+        padding: 18px !important;
+        font-size: 1rem;
+
+        .faq-question {
+          align-items: flex-start;
+        }
+      }
+
+      .ant-collapse-panel .ant-collapse-body {
+        padding: 18px !important;
       }
     }
   }

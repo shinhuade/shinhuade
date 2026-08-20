@@ -177,6 +177,8 @@ function Contact() {
 }
 
 const Wrapper = styled.section`
+  background: #fff;
+
   .container {
     max-width: 1200px;
     margin: 0 auto;

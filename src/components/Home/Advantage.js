@@ -23,38 +23,36 @@ const advantages = [
 
 function Advantage() {
   return (
-    <Wrapper>
-      <div className="container">
-        <Row gutter={[32, 16]} justify="center">
-          {advantages.map((it, idx) => (
-            <Col xs={24} md={8} key={idx}>
-              <Item>
-                <div className="icon">{it.icon}</div>
-                <div className="content">
-                  <h3>{it.title}</h3>
-                  <p>{it.desc}</p>
-                </div>
-              </Item>
-            </Col>
-          ))}
-        </Row>
-      </div>
+    <Wrapper className="container">
+      <Row gutter={[32, 16]} justify="center">
+        {advantages.map((it, idx) => (
+          <Col xs={24} md={8} key={idx}>
+            <Item>
+              <div className="icon">{it.icon}</div>
+              <div className="content">
+                <h3>{it.title}</h3>
+                <p>{it.desc}</p>
+              </div>
+            </Item>
+          </Col>
+        ))}
+      </Row>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.section`
-  z-index: 1;
+const Wrapper = styled.div`
+  position: relative;
+  margin-top: 48px;
+  z-index: 3;
 
-  & > .container {
-    & > .ant-row {
-      background: #fff;
-      width: 100%;
-      box-shadow: 0 0 5px rgb(from var(--primary-color) r g b / 0.2);
-      border-radius: 2rem;
-      margin: auto !important;
-      padding: 30px 0;
-    }
+  & > .ant-row {
+    background: #fff;
+    width: 100%;
+    box-shadow: 0 0 5px rgb(from var(--primary-color) r g b / 0.2);
+    border-radius: 2rem;
+    margin: auto !important;
+    padding: 30px 0;
   }
 `;
 

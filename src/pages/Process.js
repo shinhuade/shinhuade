@@ -125,6 +125,7 @@ function Process() {
 
 const Wrapper = styled.div`
   padding: 80px 0;
+  background: #fff;
   // background-color: #f9f9f9;
   overflow: hidden;
 

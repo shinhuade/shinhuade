@@ -4,95 +4,90 @@ import styled from 'styled-components';
 function PageHeader({ title, subtitle, bgText = 'HEADER' }) {
   return (
     <Wrapper $bgText={bgText}>
-      <div className="circle circle-1"></div>
-      <div className="circle circle-2"></div>
-      <div className="circle circle-3"></div>
-      <h2>{title}</h2>
-      {subtitle && <p className="subtitle">{subtitle}</p>}
+      <div className="container">
+        <span className="eyebrow">{bgText}</span>
+        <h2>{title}</h2>
+        {subtitle && <p className="subtitle">{subtitle}</p>}
+      </div>
     </Wrapper>
   );
 }
 
 const Wrapper = styled.section`
   position: relative;
-  padding: 100px 20px;
-  background: linear-gradient(135deg, var(--bg-light-color) 0%, #fff 100%);
+  padding: 92px 0 86px;
+  background:
+    linear-gradient(135deg, rgba(0, 54, 91, 0.94), rgba(0, 74, 120, 0.84)),
+    var(--primary-color);
   overflow: hidden;
-  text-align: center;
+  color: #fff;
 
   &::before {
     content: '${(props) => props.$bgText}';
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 10vw;
+    right: max(20px, 6vw);
+    bottom: -0.22em;
+    font-size: clamp(4rem, 13vw, 11rem);
     font-weight: 900;
-    color: rgba(0, 0, 0, 0.03);
+    color: rgba(255, 255, 255, 0.055);
     pointer-events: none;
-    z-index: 0;
     white-space: nowrap;
   }
 
-  /* 裝飾性圓圈 */
-  .circle {
+  &::after {
+    content: '';
+    width: min(520px, 45vw);
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.35), transparent);
     position: absolute;
-    border-radius: 50%;
-    background: var(--primary-color);
-    opacity: 0.1;
-    animation: float 6s ease-in-out infinite;
-  }
-  .circle-1 {
-    width: 100px;
-    height: 100px;
-    top: 10%;
-    left: 10%;
-    animation-delay: 0s;
-  }
-  .circle-2 {
-    width: 60px;
-    height: 60px;
-    top: 60%;
-    right: 15%;
-    animation-delay: 1s;
-    background: var(--secondary-color);
-  }
-  .circle-3 {
-    width: 40px;
-    height: 40px;
-    bottom: 20%;
-    left: 20%;
-    animation-delay: 2s;
+    left: 0;
+    bottom: 32px;
   }
 
-  @keyframes float {
-    0%,
-    100% {
-      transform: translateY(0);
-    }
-    50% {
-      transform: translateY(-20px);
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.72);
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.14em;
+    margin-bottom: 12px;
+
+    &::before {
+      content: '';
+      width: 36px;
+      height: 2px;
+      background: var(--accent-color);
     }
   }
 
   h2 {
-    position: relative;
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--primary-color);
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800;
+    color: #fff;
     margin-bottom: 16px;
-    z-index: 1;
-    letter-spacing: 2px;
+    letter-spacing: 0;
+    line-height: 1.15;
   }
 
   .subtitle {
     position: relative;
-    color: #666;
+    color: rgba(255, 255, 255, 0.78);
     font-size: 1.125rem;
-    max-width: 600px;
-    margin: 0 auto;
+    max-width: 680px;
+    margin: 0;
     z-index: 1;
-    line-height: 1.6;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 576px) {
+    padding: 72px 0 64px;
   }
 `;
 
