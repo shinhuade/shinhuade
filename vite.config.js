@@ -16,6 +16,13 @@ export default defineConfig({
     include: ['src/**/*.js', 'src/**/*.jsx'],
     exclude: [],
   },
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        '.js': 'jsx',
+      },
+    },
+  },
   server: {
     host: true, // ⭐ 關鍵
     port: 5173, // 可選，跟你 ngrok 的 port 對齊
